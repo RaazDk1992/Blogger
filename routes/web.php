@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -17,4 +19,5 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::resource('blog',BlogController::class);
 require __DIR__.'/auth.php';
