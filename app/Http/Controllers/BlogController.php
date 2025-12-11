@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BlogController extends Controller
 {
@@ -11,8 +12,11 @@ class BlogController extends Controller
      * Display a listing of the resource.
      */
     public function index()
+
     {
-        return view("blog.index");
+        $userId = Auth::user()->id;
+        $blogs = Blog::orderBy("created_at","desc")->where("user_id",$userId)->paginate(10);
+        return view("blog.index")->with("blogs",$blogs);
     }
 
     /**
