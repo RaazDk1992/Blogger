@@ -24,7 +24,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return view('blog.create');
     }
 
     /**
@@ -32,7 +32,15 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title'=>['required','string','max:100'],
+            'content'=>['required','string']
+        ]) ;
         //
+
+        $user = Auth::id();
+        $blog = new Blog(['title'=>$request->title,'content'=>$request->content,'user_id'=>$user]);
+        $blog->save();
     }
 
     /**
@@ -49,6 +57,8 @@ class BlogController extends Controller
     public function edit(Blog $blog)
     {
         //
+
+        return view('blog.update')->with('blog',$blog);
     }
 
     /**

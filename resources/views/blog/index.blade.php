@@ -5,11 +5,13 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div class="py-12 relative">
+        <div class="max-w-7xl mx-auto  sm:px-6 lg:px-8">
+           
+           <x-link-button class="absolute inline-block top-5 right-10 " href="{{ route('blog.create') }}"> Create a note!!!</x-link-button>
             @foreach ($blogs as $blog)
-
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6 relative">
+                    <x-link-button href="{{ route('blog.edit',$blog) }}" class="absolute top-2 right-7"> Update</x-link-button>
                     <div class="p-6 bg-white border-b border-gray-200">
                         <h3 class="font-semibold text-lg text-gray-800 leading-tight">
                             {{ $blog->title }}
