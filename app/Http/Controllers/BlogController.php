@@ -58,7 +58,7 @@ class BlogController extends Controller
     {
         //
 
-        return view('blog.update')->with('blog',$blog);
+        return view('blog.edit')->with('blog',$blog);
     }
 
     /**
@@ -66,7 +66,15 @@ class BlogController extends Controller
      */
     public function update(Request $request, Blog $blog)
     {
+        $validated = $request->validate([
+            'title'=>['required','string','max:100'],
+            'content'=>['required','string','max:500']
+        ]);
+
+        $blog->update($validated);
+       
         //
+
     }
 
     /**
